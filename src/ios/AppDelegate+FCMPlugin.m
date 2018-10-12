@@ -159,8 +159,8 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
             NSLog(@"Unable to connect to FCM. %@", error);
         } else {
             NSLog(@"Connected to FCM.");
-            [[FIRMessaging messaging] subscribeToTopic:@"/topics/ios"];
-            [[FIRMessaging messaging] subscribeToTopic:@"/topics/all"];
+            [[FIRMessaging messaging] subscribeToTopic:@"ios"];
+            [[FIRMessaging messaging] subscribeToTopic:@"all"];
         }
     }];
 }
