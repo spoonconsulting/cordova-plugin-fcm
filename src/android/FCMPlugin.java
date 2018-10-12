@@ -120,6 +120,17 @@ public class FCMPlugin extends CordovaPlugin {
         //});
 		return true;
 	}
+
+	public static void sendTokenRefresh(String token) {
+ 		Log.d(TAG, "==> FCMPlugin sendRefreshToken");
+ 	    try {
+ 			String callBack = "javascript:" + tokenRefreshCallBack + "('" + token + "')";
+ 			gWebView.sendJavascript(callBack);
+ 		} catch (Exception e) {
+ 			Log.d(TAG, "\tERROR sendRefreshToken: " + e.getMessage());
+ 		}
+ 	}
+   		    
 	
 	public static void sendPushPayload(Map<String, Object> payload) {
 		Log.d(TAG, "==> FCMPlugin sendPushPayload");
@@ -143,21 +154,5 @@ public class FCMPlugin extends CordovaPlugin {
 			Log.d(TAG, "\tERROR sendPushToView. SAVED NOTIFICATION: " + e.getMessage());
 			lastPush = payload;
 		}
-	}
-
-	public static void sendTokenRefresh(String token) {
-		Log.d(TAG, "==> FCMPlugin sendRefreshToken");
-	  try {
-			String callBack = "javascript:" + tokenRefreshCallBack + "('" + token + "')";
-			gWebView.sendJavascript(callBack);
-		} catch (Exception e) {
-			Log.d(TAG, "\tERROR sendRefreshToken: " + e.getMessage());
-		}
-	}
-  
-  @Override
-	public void onDestroy() {
-		gWebView = null;
-		notificationCallBackReady = false;
 	}
 } 
