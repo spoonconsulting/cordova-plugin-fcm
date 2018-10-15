@@ -33,24 +33,24 @@ function directoryExists(path) {
 var config = fs.readFileSync("config.xml").toString()
 var name = getValue(config, "name")
 
-if (directoryExists("platforms/ios")) {
-	var path = "GoogleService-Info.plist";
+// if (directoryExists("platforms/ios")) {
+// 	var path = "GoogleService-Info.plist";
 
-    if (fileExists( path )) {
-      try {
-        if (!directoryExists("platforms/ios/" + name + "/Resources")){
-          fs.mkdir("platforms/ios/" + name + "/Resources");
-        }
-        var contents = fs.readFileSync(path).toString();
-        fs.writeFileSync("platforms/ios/" + name + "/Resources/GoogleService-Info.plist", contents)
-      } catch(err) {
-        process.stdout.write(err);
-      }
+//     if (fileExists( path )) {
+//       try {
+//         if (!directoryExists("platforms/ios/" + name + "/Resources")){
+//           fs.mkdir("platforms/ios/" + name + "/Resources");
+//         }
+//         var contents = fs.readFileSync(path).toString();
+//         fs.writeFileSync("platforms/ios/" + name + "/Resources/GoogleService-Info.plist", contents)
+//       } catch(err) {
+//         process.stdout.write(err);
+//       }
 
-    } else {
-		throw new Error("cordova-plugin-fcm: You have installed platform ios but file 'GoogleService-Info.plist' was not found in your Cordova project root folder.")
-	}
-}
+//     } else {
+// 		throw new Error("cordova-plugin-fcm: You have installed platform ios but file 'GoogleService-Info.plist' was not found in your Cordova project root folder.")
+// 	}
+// }
 
 if (directoryExists("platforms/android")) {
 	var path = "google-services.json";
